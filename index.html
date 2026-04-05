@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>கவின்@யா Super Polish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --blue-deep: #0a1628;
+      --blue-dark: #0d2040;
+      --blue-mid: #1a3a6e;
+      --blue-bright: #1565c0;
+      --blue-accent: #1e88e5;
+      --blue-glow: #42a5f5;
+      --blue-light: #bbdefb;
+      --gold: #ffc107;
+      --gold-light: #ffe082;
+      --white: #ffffff;
+      --off-white: #f0f6ff;
+      --gray-light: #e3eaf5;
+      --text-body: #cfd8ea;
+      --radius: 14px;
+      --shadow: 0 8px 32px rgba(21,101,192,0.18);
+      --shadow-strong: 0 16px 48px rgba(21,101,192,0.32);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', 'Noto Sans Tamil', sans-serif;
+      background: var(--blue-deep);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAVIGATION ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(10,22,40,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(66,165,245,0.18);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--blue-accent), var(--blue-glow));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 16px rgba(30,136,229,0.4);
+    }
+    .nav-brand-text { line-height: 1.1; }
+    .nav-brand-text .line1 {
+      font-size: 0.7rem; color: var(--blue-glow); letter-spacing: 2px; text-transform: uppercase;
+    }
+    .nav-brand-text .line2 {
+      font-size: 1rem; font-weight: 700; color: var(--white);
+    }
+
+    .nav-links {
+      display: flex; gap: 8px; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-body);
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.25s;
+      letter-spacing: 0.5px;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(30,136,229,0.15);
+      color: var(--blue-glow);
+    }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-accent));
+      color: var(--white) !important;
+      border-radius: 8px !important;
+      padding: 8px 18px !important;
+      font-weight: 600 !important;
+      box-shadow: 0 4px 14px rgba(21,101,192,0.4);
+    }
+    .nav-cta:hover {
+      background: linear-gradient(135deg, var(--blue-accent), var(--blue-glow)) !important;
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block; width: 26px; height: 2px;
+      background: var(--blue-glow); border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ─── SECTIONS ─── */
+    .page-section {
+      min-height: 100vh;
+      padding-top: 70px;
+    }
+
+    /* ─── HOME ─── */
+    #home {
+      background: linear-gradient(160deg, var(--blue-deep) 0%, var(--blue-dark) 50%, #0a2040 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-effects {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .hero-circle {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,136,229,0.12) 0%, transparent 70%);
+    }
+    .hero-circle.c1 { width: 600px; height: 600px; top: -100px; right: -100px; }
+    .hero-circle.c2 { width: 400px; height: 400px; bottom: -80px; left: -80px; }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(30,136,229,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,136,229,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: calc(100vh - 70px);
+      padding: 60px 5% 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(30,136,229,0.15);
+      border: 1px solid rgba(66,165,245,0.3);
+      border-radius: 50px;
+      padding: 8px 20px;
+      font-size: 0.8rem;
+      color: var(--blue-glow);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      animation: fadeInDown 0.8s ease;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.9s ease 0.1s both;
+    }
+    .hero-title .tamil { color: var(--white); display: block; }
+    .hero-title .english {
+      display: block;
+      background: linear-gradient(90deg, var(--blue-glow), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.22rem);
+      color: var(--text-body);
+      font-family: 'Noto Sans Tamil', sans-serif;
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.9s ease 0.2s both;
+    }
+
+    .hero-chips {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      margin-bottom: 44px;
+      animation: fadeInUp 0.9s ease 0.3s both;
+    }
+    .hero-chip {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(66,165,245,0.25);
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .hero-chip:hover {
+      background: rgba(30,136,229,0.2);
+      border-color: var(--blue-glow);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(30,136,229,0.25);
+    }
+    .hero-chip i { color: var(--blue-glow); font-size: 1.1rem; }
+
+    .hero-cta-group {
+      display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+      animation: fadeInUp 0.9s ease 0.4s both;
+    }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.3px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-accent));
+      color: var(--white);
+      box-shadow: 0 8px 28px rgba(21,101,192,0.45);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(30,136,229,0.55);
+    }
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #1b5e20, #2e7d32);
+      color: var(--white);
+      box-shadow: 0 8px 28px rgba(46,125,50,0.4);
+    }
+    .btn-whatsapp:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(46,125,50,0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--blue-glow);
+      border: 2px solid rgba(66,165,245,0.5);
+    }
+    .btn-outline:hover {
+      background: rgba(66,165,245,0.12);
+      border-color: var(--blue-glow);
+      transform: translateY(-3px);
+    }
+
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 0; justify-content: center;
+      margin-top: 64px;
+      border-top: 1px solid rgba(66,165,245,0.15);
+      padding-top: 40px;
+      width: 100%; max-width: 700px;
+      animation: fadeInUp 0.9s ease 0.5s both;
+    }
+    .stat-item {
+      flex: 1; min-width: 140px;
+      text-align: center; padding: 16px 20px;
+      border-right: 1px solid rgba(66,165,245,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-size: 2.2rem; font-weight: 800;
+      background: linear-gradient(90deg, var(--blue-glow), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-body); margin-top: 4px; letter-spacing: 0.5px; }
+
+    /* ─── SECTION COMMON ─── */
+    .section-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .section-tag {
+      display: inline-block;
+      background: rgba(30,136,229,0.12);
+      border: 1px solid rgba(66,165,245,0.25);
+      color: var(--blue-glow);
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .section-title span {
+      background: linear-gradient(90deg, var(--blue-glow), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .section-desc {
+      color: var(--text-body);
+      font-size: 1rem;
+      max-width: 540px; margin: 0 auto;
+      line-height: 1.7;
+    }
+    .section-line {
+      width: 60px; height: 4px;
+      background: linear-gradient(90deg, var(--blue-accent), var(--gold));
+      border-radius: 4px;
+      margin: 16px auto 0;
+    }
+
+    .container {
+      max-width: 1160px; margin: 0 auto; padding: 0 5%;
+    }
+    .section-pad { padding: 100px 0; }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: linear-gradient(180deg, var(--blue-deep) 0%, var(--blue-dark) 100%);
+      position: relative;
+    }
+    #about::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(66,165,245,0.4), transparent);
+    }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card-main {
+      background: linear-gradient(145deg, rgba(21,101,192,0.2), rgba(13,32,64,0.8));
+      border: 1px solid rgba(66,165,245,0.2);
+      border-radius: 24px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      position: relative; overflow: hidden;
+    }
+    .about-card-main::before {
+      content: '';
+      position: absolute; top: -50%; right: -30%;
+      width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,136,229,0.12) 0%, transparent 70%);
+    }
+    .about-icon-big {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-glow));
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin-bottom: 24px;
+      box-shadow: 0 8px 28px rgba(21,101,192,0.45);
+    }
+    .about-card-main h3 {
+      font-size: 1.6rem; font-weight: 800; margin-bottom: 10px;
+      font-family: 'Noto Sans Tamil', sans-serif;
+    }
+    .about-card-main p {
+      color: var(--text-body); line-height: 1.7; margin-bottom: 28px;
+    }
+    .about-pills {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .about-pill {
+      background: rgba(30,136,229,0.15);
+      border: 1px solid rgba(66,165,245,0.25);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+      color: var(--blue-light);
+      transition: all 0.25s;
+    }
+    .about-pill:hover {
+      background: rgba(30,136,229,0.28);
+      border-color: var(--blue-glow);
+      transform: translateY(-2px);
+    }
+    .about-pill i { color: var(--blue-glow); }
+
+    .about-floating {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: linear-gradient(135deg, var(--gold), #ff8f00);
+      border-radius: 16px;
+      padding: 16px 22px;
+      text-align: center;
+      box-shadow: 0 10px 32px rgba(255,193,7,0.4);
+    }
+    .about-floating .num { font-size: 1.8rem; font-weight: 800; color: var(--blue-deep); }
+    .about-floating .lbl { font-size: 0.7rem; font-weight: 700; color: var(--blue-dark); line-height: 1.2; }
+
+    .about-content h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 20px;
+    }
+    .about-content h2 span {
+      background: linear-gradient(90deg, var(--blue-glow), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .about-content > p {
+      color: var(--text-body); line-height: 1.8; margin-bottom: 32px; font-size: 1.02rem;
+    }
+    .about-features {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .about-feat {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(66,165,245,0.12);
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    .about-feat:hover {
+      background: rgba(30,136,229,0.1);
+      border-color: rgba(66,165,245,0.3);
+      transform: translateX(6px);
+    }
+    .feat-icon {
+      width: 42px; height: 42px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-accent));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .feat-text h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+    .feat-text p { font-size: 0.82rem; color: var(--text-body); line-height: 1.5; }
+
+    /* ─── SERVICES ─── */
+    #services {
+      background: var(--blue-deep);
+      position: relative;
+    }
+    #services::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(66,165,245,0.3), transparent);
+    }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;
+    }
+    .service-card {
+      background: linear-gradient(160deg, rgba(21,101,192,0.12), rgba(10,22,40,0.9));
+      border: 1px solid rgba(66,165,245,0.18);
+      border-radius: 20px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.35s;
+      position: relative; overflow: hidden;
+      cursor: default;
+    }
+    .service-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--blue-accent), var(--blue-glow));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(66,165,245,0.4);
+      box-shadow: var(--shadow-strong);
+      background: linear-gradient(160deg, rgba(21,101,192,0.22), rgba(10,22,40,0.95));
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon-wrap {
+      width: 86px; height: 86px; margin: 0 auto 24px;
+      background: linear-gradient(135deg, rgba(21,101,192,0.25), rgba(30,136,229,0.15));
+      border: 1px solid rgba(66,165,245,0.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      transition: all 0.3s;
+    }
+    .service-card:hover .service-icon-wrap {
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-accent));
+      border-color: var(--blue-accent);
+      box-shadow: 0 8px 28px rgba(21,101,192,0.5);
+      transform: scale(1.1);
+    }
+    .service-card h3 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 12px;
+    }
+    .service-card p {
+      color: var(--text-body); font-size: 0.88rem; line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .service-tag {
+      display: inline-block;
+      background: rgba(30,136,229,0.15);
+      border: 1px solid rgba(66,165,245,0.25);
+      color: var(--blue-glow);
+      font-size: 0.75rem;
+      padding: 5px 14px; border-radius: 50px;
+      font-weight: 600;
+    }
+    .service-steps {
+      display: flex; flex-direction: column; gap: 10px; margin-top: 18px; text-align: left;
+    }
+    .service-step {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.82rem; color: var(--text-body);
+    }
+    .service-step i { color: var(--blue-glow); font-size: 0.7rem; }
+
+    /* ─── GALLERY ─── */
+    #gallery {
+      background: linear-gradient(180deg, var(--blue-dark) 0%, var(--blue-deep) 100%);
+      position: relative;
+    }
+    #gallery::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(66,165,245,0.3), transparent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto auto;
+      gap: 18px;
+    }
+    .gallery-item {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      border: 1px solid rgba(66,165,245,0.15);
+      background: rgba(13,32,64,0.8);
+      transition: all 0.35s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03);
+      border-color: rgba(66,165,245,0.4);
+      box-shadow: 0 12px 40px rgba(21,101,192,0.4);
+      z-index: 2;
+    }
+    .gallery-item.span2 { grid-column: span 2; }
+    .gallery-item.tall { grid-row: span 2; }
+
+    .gallery-visual {
+      width: 100%; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 16px;
+      padding: 32px;
+      position: relative; overflow: hidden;
+    }
+    .gallery-item.span2 .gallery-visual { aspect-ratio: 8/3; }
+    .gallery-item.tall .gallery-visual { aspect-ratio: auto; height: 100%; min-height: 320px; }
+
+    .gallery-bg-1 { background: linear-gradient(145deg, #0d1b3e 0%, #1a3a6e 100%); }
+    .gallery-bg-2 { background: linear-gradient(145deg, #0a2840 0%, #1565c0 100%); }
+    .gallery-bg-3 { background: linear-gradient(145deg, #001f3e 0%, #0d47a1 100%); }
+    .gallery-bg-4 { background: linear-gradient(145deg, #0e2040 0%, #1976d2 100%); }
+    .gallery-bg-5 { background: linear-gradient(145deg, #082030 0%, #1a237e 100%); }
+    .gallery-bg-6 { background: linear-gradient(145deg, #0d2840 0%, #1565c0 100%); }
+    .gallery-bg-7 { background: linear-gradient(145deg, #0a1a30 0%, #0d47a1 100%); }
+    .gallery-bg-8 { background: linear-gradient(145deg, #0f2040 0%, #1e88e5 100%); }
+
+    .gallery-icon {
+      font-size: 3.5rem;
+      background: linear-gradient(135deg, var(--blue-glow), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .gallery-item.span2 .gallery-icon, .gallery-item.tall .gallery-icon { font-size: 4.5rem; }
+
+    .gallery-label {
+      font-size: 0.85rem; font-weight: 700; color: var(--white);
+      letter-spacing: 0.5px; text-align: center;
+    }
+    .gallery-sub { font-size: 0.72rem; color: var(--text-body); text-align: center; }
+
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(21,101,192,0.7) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.3s;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding-bottom: 16px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay span {
+      color: var(--white); font-size: 0.82rem; font-weight: 600; letter-spacing: 1px;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--blue-deep);
+      position: relative;
+    }
+    #contact::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(66,165,245,0.3), transparent);
+    }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    }
+    .contact-info {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .contact-intro h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 12px;
+    }
+    .contact-intro h2 span {
+      background: linear-gradient(90deg, var(--blue-glow), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .contact-intro p { color: var(--text-body); line-height: 1.7; font-family: 'Noto Sans Tamil', sans-serif; font-size: 0.95rem; }
+
+    .phone-cards {
+      display: flex; flex-direction: column; gap: 14px; margin-top: 8px;
+    }
+    .phone-card {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(21,101,192,0.12);
+      border: 1px solid rgba(66,165,245,0.2);
+      border-radius: 14px;
+      padding: 18px 22px;
+      transition: all 0.3s;
+    }
+    .phone-card:hover {
+      background: rgba(21,101,192,0.22);
+      border-color: rgba(66,165,245,0.4);
+      transform: translateX(6px);
+    }
+    .phone-card-left { display: flex; align-items: center; gap: 14px; }
+    .phone-icon-wrap {
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-accent));
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .phone-num { font-size: 1.2rem; font-weight: 700; letter-spacing: 1px; }
+    .phone-lbl { font-size: 0.72rem; color: var(--text-body); margin-top: 2px; }
+
+    .contact-buttons {
+      display: flex; flex-direction: column; gap: 14px; margin-top: 8px;
+    }
+    .contact-btn-full {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 18px 24px;
+      border-radius: 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: none; cursor: pointer;
+      transition: all 0.3s;
+    }
+    .call-btn {
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-accent));
+      color: var(--white);
+      box-shadow: 0 8px 28px rgba(21,101,192,0.4);
+    }
+    .call-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(21,101,192,0.55);
+    }
+    .wa-btn {
+      background: linear-gradient(135deg, #1b5e20, #388e3c);
+      color: var(--white);
+      box-shadow: 0 8px 28px rgba(56,142,60,0.4);
+    }
+    .wa-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(56,142,60,0.55);
+    }
+
+    .contact-card-right {
+      background: linear-gradient(160deg, rgba(21,101,192,0.14), rgba(10,22,40,0.9));
+      border: 1px solid rgba(66,165,245,0.18);
+      border-radius: 24px;
+      padding: 44px 36px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .contact-card-right::before {
+      content: ''; position: absolute;
+      top: -80px; right: -80px;
+      width: 280px; height: 280px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(30,136,229,0.12) 0%, transparent 70%);
+    }
+    .contact-card-right h3 {
+      font-size: 1.4rem; font-weight: 800; margin-bottom: 10px;
+      font-family: 'Noto Sans Tamil', sans-serif;
+    }
+    .contact-card-right > p {
+      color: var(--text-body); margin-bottom: 28px; font-size: 0.9rem; line-height: 1.6;
+    }
+    .contact-services-list {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .cs-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(66,165,245,0.12);
+      border-radius: 10px;
+      font-size: 0.88rem;
+      transition: all 0.25s;
+    }
+    .cs-item:hover { background: rgba(30,136,229,0.1); border-color: rgba(66,165,245,0.25); }
+    .cs-item i { color: var(--blue-glow); width: 20px; text-align: center; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: rgba(0,0,0,0.5);
+      border-top: 1px solid rgba(66,165,245,0.12);
+      padding: 36px 5%;
+      text-align: center;
+    }
+    footer .footer-brand {
+      font-size: 1.2rem; font-weight: 800; margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--blue-glow), var(--gold));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    footer p { color: var(--text-body); font-size: 0.82rem; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(40px); transition: all 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; flex-direction: column; position: absolute;
+        top: 70px; left: 0; right: 0;
+        background: rgba(10,22,40,0.98);
+        border-bottom: 1px solid rgba(66,165,245,0.18);
+        padding: 20px 5%;
+      }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item.span2 { grid-column: span 2; }
+      .gallery-item.tall { grid-row: span 1; }
+      .about-floating { bottom: -10px; right: -5px; }
+    }
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.span2 { grid-column: span 1; }
+      .hero-chips { gap: 10px; }
+      .hero-chip { padding: 10px 18px; font-size: 0.88rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════ NAVIGATION ═══════════════ -->
+  <nav>
+    <a href="#home" class="nav-brand">
+      <div class="nav-logo-icon"><i class="fas fa-star"></i></div>
+      <div class="nav-brand-text">
+        <div class="line1">Professional Cleaning</div>
+        <div class="line2">Super Polish</div>
+      </div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" class="active" onclick="setActive(this)">🏠 Home</a></li>
+      <li><a href="#about" onclick="setActive(this)">ℹ️ About</a></li>
+      <li><a href="#services" onclick="setActive(this)">⚙️ Services</a></li>
+      <li><a href="#gallery" onclick="setActive(this)">🖼️ Gallery</a></li>
+      <li><a href="#contact" class="nav-cta" onclick="setActive(this)">📞 Contact</a></li>
+    </ul>
+
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════ HOME ═══════════════ -->
+  <section id="home" class="page-section">
+    <div class="hero-bg-effects">
+      <div class="hero-grid"></div>
+      <div class="hero-circle c1"></div>
+      <div class="hero-circle c2"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <i class="fas fa-shield-check"></i>
+        Professional Cleaning Service
+      </div>
+
+      <h1 class="hero-title">
+        <span class="tamil">கவின் @ பா</span>
+        <span class="english">Super Polish</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        தரமான மார்பல் டைல்ஸ் மெஷின் மூலம் வாஷிங் &amp; பாலிஷ் செய்து தரப்படும்.
+      </p>
+
+      <div class="hero-chips">
+        <div class="hero-chip"><i class="fas fa-border-all"></i> Floor Polishing</div>
+        <div class="hero-chip"><i class="fas fa-shower"></i> Bathroom Cleaning</div>
+        <div class="hero-chip"><i class="fas fa-utensils"></i> Kitchen Cleaning</div>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="tel:8098523452" class="btn btn-primary">
+          <i class="fas fa-phone"></i>
+          📞 8098523452
+        </a>
+        <a href="tel:7094684803" class="btn btn-primary" style="background:linear-gradient(135deg,#0d47a1,#1976d2)">
+          <i class="fas fa-phone"></i>
+          📞 7094684803
+        </a>
+        <a href="https://wa.me/918098523452" class="btn btn-whatsapp" target="_blank">
+          <i class="fab fa-whatsapp"></i>
+          WhatsApp
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Services Available</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Machine Powered</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">✓</div>
+          <div class="stat-label">Quality Guaranteed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Available to Call</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ ABOUT ═══════════════ -->
+  <section id="about" class="page-section section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">ℹ️ About Us</div>
+        <h2 class="section-title">எங்களை பற்றி — <span>About Us</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-visual reveal">
+          <div class="about-card-main">
+            <div class="about-icon-big"><i class="fas fa-certificate"></i></div>
+            <h3>கவின் @ பா Super Polish</h3>
+            <p>
+              We provide professional floor polishing and cleaning services using advanced machines for better quality and lasting shine. Trusted by many households and businesses.
+            </p>
+            <div class="about-pills">
+              <div class="about-pill"><i class="fas fa-border-all"></i> Floor Polishing</div>
+              <div class="about-pill"><i class="fas fa-shower"></i> Bathroom</div>
+              <div class="about-pill"><i class="fas fa-utensils"></i> Kitchen</div>
+              <div class="about-pill"><i class="fas fa-cog"></i> Machine Wash</div>
+            </div>
+          </div>
+          <div class="about-floating">
+            <div class="num">100%</div>
+            <div class="lbl">Quality<br>Work</div>
+          </div>
+        </div>
+
+        <div class="about-content reveal">
+          <h2>தரமான சேவை — <span>Quality Service</span></h2>
+          <p>
+            கவின் @ பா Super Polish, தரமான மார்பல் டைல்ஸ் மெஷின் மூலம் வாஷிங் & பாலிஷ் செய்து தரப்படும். We specialize in cleaning and polishing Floors, Bathrooms, and Kitchens with professional-grade machines for a superior finish.
+          </p>
+          <div class="about-features">
+            <div class="about-feat">
+              <div class="feat-icon"><i class="fas fa-border-all"></i></div>
+              <div class="feat-text">
+                <h4>Floor Cleaning & Polishing</h4>
+                <p>Marble & tile floor machine polishing for maximum shine and durability.</p>
+              </div>
+            </div>
+            <div class="about-feat">
+              <div class="feat-icon"><i class="fas fa-shower"></i></div>
+              <div class="feat-text">
+                <h4>Bathroom Cleaning</h4>
+                <p>Deep bathroom tile and fixture cleaning for a hygienic, fresh space.</p>
+              </div>
+            </div>
+            <div class="about-feat">
+              <div class="feat-icon"><i class="fas fa-utensils"></i></div>
+              <div class="feat-text">
+                <h4>Kitchen Cleaning</h4>
+                <p>Thorough kitchen surface and tile cleaning to remove stains and grease.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ SERVICES ═══════════════ -->
+  <section id="services" class="page-section section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">⚙️ Our Services</div>
+        <h2 class="section-title">எங்கள் சேவைகள் — <span>What We Do</span></h2>
+        <p class="section-desc">தரமான மெஷின் மூலம் — Professional machine-based cleaning & polishing services.</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Floor -->
+        <div class="service-card reveal">
+          <div class="service-icon-wrap"><i class="fas fa-border-all"></i></div>
+          <h3>🏠 Floor Polishing</h3>
+          <p>
+            Marble and tile floor machine polishing to restore original shine. We use professional-grade polishing machines for deep cleaning and long-lasting gloss.
+          </p>
+          <div class="service-steps">
+            <div class="service-step"><i class="fas fa-check-circle"></i> Machine மூலம் deep clean</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Marble & Tile பாலிஷ்</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Stain removal & buffing</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> High-gloss finish</div>
+          </div>
+          <br>
+          <span class="service-tag">Floor Polishing</span>
+        </div>
+
+        <!-- Bathroom -->
+        <div class="service-card reveal">
+          <div class="service-icon-wrap"><i class="fas fa-shower"></i></div>
+          <h3>🚿 Bathroom Cleaning</h3>
+          <p>
+            Complete bathroom tile and fixture deep cleaning. Removes stains, mold, and buildup for a hygienically clean and fresh bathroom every time.
+          </p>
+          <div class="service-steps">
+            <div class="service-step"><i class="fas fa-check-circle"></i> Tile & grout cleaning</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Stain & mold removal</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Fixture cleaning</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Machine wash & dry</div>
+          </div>
+          <br>
+          <span class="service-tag">Bathroom Cleaning</span>
+        </div>
+
+        <!-- Kitchen -->
+        <div class="service-card reveal">
+          <div class="service-icon-wrap"><i class="fas fa-utensils"></i></div>
+          <h3>🍽️ Kitchen Cleaning</h3>
+          <p>
+            Deep kitchen surface, tile, and cabinet cleaning. Machine-powered grease and stain removal for a spotlessly clean kitchen with lasting results.
+          </p>
+          <div class="service-steps">
+            <div class="service-step"><i class="fas fa-check-circle"></i> Counter & tile washing</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Grease & stain removal</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Cabinet surface clean</div>
+            <div class="service-step"><i class="fas fa-check-circle"></i> Machine-powered wash</div>
+          </div>
+          <br>
+          <span class="service-tag">Kitchen Cleaning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ GALLERY ═══════════════ -->
+  <section id="gallery" class="page-section section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">🖼️ Gallery</div>
+        <h2 class="section-title">எங்கள் பணி — <span>Our Work</span></h2>
+        <p class="section-desc">Showcasing our professional cleaning and polishing work.</p>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="gallery-grid reveal">
+
+        <div class="gallery-item span2">
+          <div class="gallery-visual gallery-bg-1">
+            <div class="gallery-icon"><i class="fas fa-cog"></i></div>
+            <div class="gallery-label">Floor Polishing Machine at Work</div>
+            <div class="gallery-sub">Machine மூலம் Floor பாலிஷ்</div>
+          </div>
+          <div class="gallery-overlay"><span>FLOOR POLISHING</span></div>
+        </div>
+
+        <div class="gallery-item tall">
+          <div class="gallery-visual gallery-bg-2">
+            <div class="gallery-icon"><i class="fas fa-shower"></i></div>
+            <div class="gallery-label">Bathroom Deep Cleaning</div>
+            <div class="gallery-sub">Bathroom சுத்தம்</div>
+          </div>
+          <div class="gallery-overlay"><span>BATHROOM CLEANING</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-visual gallery-bg-3">
+            <div class="gallery-icon"><i class="fas fa-border-all"></i></div>
+            <div class="gallery-label">Tile Polishing</div>
+            <div class="gallery-sub">டைல்ஸ் பாலிஷ்</div>
+          </div>
+          <div class="gallery-overlay"><span>TILE POLISHING</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-visual gallery-bg-4">
+            <div class="gallery-icon"><i class="fas fa-utensils"></i></div>
+            <div class="gallery-label">Kitchen Cleaning</div>
+            <div class="gallery-sub">Kitchen சுத்தம்</div>
+          </div>
+          <div class="gallery-overlay"><span>KITCHEN CLEANING</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-visual gallery-bg-5">
+            <div class="gallery-icon"><i class="fas fa-star"></i></div>
+            <div class="gallery-label">Marble Polishing</div>
+            <div class="gallery-sub">மார்பல் பாலிஷ்</div>
+          </div>
+          <div class="gallery-overlay"><span>MARBLE POLISHING</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-visual gallery-bg-6">
+            <div class="gallery-icon"><i class="fas fa-spray-can"></i></div>
+            <div class="gallery-label">Machine Wash</div>
+            <div class="gallery-sub">மெஷின் வாஷிங்</div>
+          </div>
+          <div class="gallery-overlay"><span>MACHINE WASH</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-visual gallery-bg-7">
+            <div class="gallery-icon"><i class="fas fa-bath"></i></div>
+            <div class="gallery-label">Bathroom Tiles</div>
+            <div class="gallery-sub">Bathroom டைல்ஸ்</div>
+          </div>
+          <div class="gallery-overlay"><span>BATHROOM TILES</span></div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-visual gallery-bg-8">
+            <div class="gallery-icon"><i class="fas fa-home"></i></div>
+            <div class="gallery-label">Complete Floor Work</div>
+            <div class="gallery-sub">முழு Floor பணி</div>
+          </div>
+          <div class="gallery-overlay"><span>FLOOR WORK</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ CONTACT ═══════════════ -->
+  <section id="contact" class="page-section section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">📞 Contact Us</div>
+        <h2 class="section-title">தொடர்பு கொள்ளுங்கள் — <span>Get In Touch</span></h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-info reveal">
+          <div class="contact-intro">
+            <h2>அழைக்கவும் — <span>Call Now</span></h2>
+            <p>தரமான மார்பல் டைல்ஸ் மெஷின் மூலம் வாஷிங் & பாலிஷ் செய்து தரப்படும்.</p>
+          </div>
+
+          <div class="phone-cards">
+            <div class="phone-card">
+              <div class="phone-card-left">
+                <div class="phone-icon-wrap"><i class="fas fa-phone"></i></div>
+                <div>
+                  <div class="phone-num">8098523452</div>
+                  <div class="phone-lbl">Primary Number</div>
+                </div>
+              </div>
+              <a href="tel:8098523452" class="btn btn-outline" style="padding:8px 16px;font-size:0.82rem;">Call</a>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-left">
+                <div class="phone-icon-wrap"><i class="fas fa-phone"></i></div>
+                <div>
+                  <div class="phone-num">7094684803</div>
+                  <div class="phone-lbl">Secondary Number</div>
+                </div>
+              </div>
+              <a href="tel:7094684803" class="btn btn-outline" style="padding:8px 16px;font-size:0.82rem;">Call</a>
+            </div>
+          </div>
+
+          <div class="contact-buttons">
+            <a href="tel:8098523452" class="contact-btn-full call-btn">
+              <i class="fas fa-phone-volume"></i>
+              📞 Call Now — 8098523452
+            </a>
+            <a href="https://wa.me/918098523452" class="contact-btn-full wa-btn" target="_blank">
+              <i class="fab fa-whatsapp"></i>
+              WhatsApp Us Now
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-card-right reveal">
+          <h3>கவின் @ பா Super Polish</h3>
+          <p>We are available for all your cleaning and polishing needs. Contact us for Floor, Bathroom, and Kitchen cleaning services.</p>
+
+          <div class="contact-services-list">
+            <div class="cs-item">
+              <i class="fas fa-border-all"></i>
+              <span>Floor Polishing — மெஷின் மூலம்</span>
+            </div>
+            <div class="cs-item">
+              <i class="fas fa-shower"></i>
+              <span>Bathroom Cleaning — Deep Wash</span>
+            </div>
+            <div class="cs-item">
+              <i class="fas fa-utensils"></i>
+              <span>Kitchen Cleaning — Stain Removal</span>
+            </div>
+            <div class="cs-item">
+              <i class="fas fa-cog"></i>
+              <span>Machine Wash & Polish — All Tiles</span>
+            </div>
+            <div class="cs-item">
+              <i class="fas fa-phone"></i>
+              <span>Cell: 8098523452 / 7094684803</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <div class="footer-brand">கவின் @ பா Super Polish</div>
+    <p>தரமான மார்பல் டைல்ஸ் மெஷின் மூலம் வாஷிங் & பாலிஷ் செய்து தரப்படும்.</p>
+    <p style="margin-top:8px;">📞 8098523452 / 7094684803 &nbsp;|&nbsp; Floor • Bathroom • Kitchen</p>
+  </footer>
+
+
+  <script>
+    // ── Hamburger Menu ──
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    function setActive(el) {
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('navLinks').classList.remove('open');
+    }
+
+    // ── Scroll Reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, (i % 4) * 120);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Active nav on scroll ──
+    const sections = ['home','about','services','gallery','contact'];
+    window.addEventListener('scroll', () => {
+      let cur = 'home';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && window.scrollY >= el.offsetTop - 120) cur = id;
+      });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+      });
+    });
+  </script>
+</body>
+</html>
